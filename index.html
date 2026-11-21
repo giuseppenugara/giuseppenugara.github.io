@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giuseppe Nugara · Supporto informatico per piccole imprese</title>
+<title>Giuseppe Nugara · Informatica concreta per piccole imprese</title>
 <meta name="description" content="Siti web, sicurezza informatica, backup e gestionali su misura per piccole imprese e professionisti della zona di Torino. Oltre vent'anni di esperienza IT.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%2300243D'/%3E%3Cg transform='translate(60.05 40.00) scale(0.6795)'%3E%3Cpath d='M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3' fill='none' stroke='%23F8F5F0' stroke-width='23'/%3E%3Ccircle cx='122' cy='124' r='37' fill='none' stroke='%23F8F5F0' stroke-width='23'/%3E%3Ccircle cx='48.9' cy='200.5' r='12' fill='%23F0A050'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -31,11 +31,12 @@
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; }
 body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 a { color: var(--title); }
-.wrap { max-width: 920px; margin: 0 auto; padding: 0 1.4rem; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.4rem; }
 .muted { color: var(--muted); }
 
 /* ---- pulsanti ---- */
@@ -45,70 +46,88 @@ a { color: var(--title); }
 .btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); padding: .7rem 1.1rem; font-size: .85rem; }
 
 /* ---- banda in alto ---- */
-header.top { background: var(--brand); color: var(--brand-text); border-bottom: 4px solid var(--brand-line); }
-header.top .wrap { display: flex; align-items: center; gap: .8rem; padding-top: .7rem; padding-bottom: .7rem; }
-.logo { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; color: currentColor; }
+header.top { background: var(--brand); color: var(--brand-text); border-bottom: 4px solid var(--brand-line); position: sticky; top: 0; z-index: 5; }
+header.top .wrap { display: flex; align-items: center; gap: .8rem; padding-top: .6rem; padding-bottom: .6rem; }
+.logo { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; color: currentColor; text-decoration: none; }
 .logo svg { width: 26px; height: 30px; display: block; }
-.top-title { font-weight: 500; }
-.top-sub { font-family: var(--mono); font-size: .75rem; opacity: .85; }
+.top-title { font-weight: 500; color: inherit; text-decoration: none; }
 .top-spacer { flex: 1; }
-header.top .btn { background: transparent; color: var(--brand-text); border-color: rgba(255,255,255,.45); }
-header.top .btn:hover { border-color: var(--brand-text); }
+nav.menu { display: flex; gap: 1.1rem; font-family: var(--mono); font-size: .78rem; }
+nav.menu a { color: inherit; text-decoration: none; opacity: .85; padding: .2rem 0; border-bottom: 1px solid transparent; }
+nav.menu a:hover { opacity: 1; border-bottom-color: var(--brand-line); }
 
-/* ---- apertura ---- */
-.hero { padding: 3.4rem 0 2.6rem; }
-.eyebrow { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--hi); background: var(--hi-bg); border: 1px solid var(--hi); border-radius: 4px; padding: .1rem .45rem; display: inline-block; }
-.hero h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.2; font-weight: 500; color: var(--title); margin: .9rem 0 0; max-width: 24ch; }
-.hero p { font-size: 1.05rem; color: var(--muted); max-width: 58ch; margin: 1rem 0 1.6rem; }
+/* ---- apertura: nome grande e frase ---- */
+.hero { padding: 4.5rem 0 3.5rem; }
+.hero h1 { margin: 0; font-size: clamp(2.3rem, 6.2vw, 4.4rem); line-height: 1.04; font-weight: 500; letter-spacing: -.02em; color: var(--title); }
+.hero .lead { margin: .9rem 0 0; font-size: clamp(1.25rem, 2.6vw, 1.85rem); line-height: 1.3; font-weight: 400; color: var(--text); max-width: 30ch; letter-spacing: -.01em; }
+.hero .sub { margin: 1.2rem 0 1.6rem; color: var(--muted); max-width: 56ch; font-size: 1.02rem; }
+.hero-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 
-/* ---- sezioni ---- */
-section { padding: 2rem 0; border-top: 1px solid var(--line); }
-.label { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--title); font-weight: 600; margin: 0 0 1rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: .8rem; }
-.card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
-.card h3 { margin: 0 0 .35rem; font-size: 1rem; font-weight: 500; color: var(--title); }
-.card p { margin: 0; color: var(--muted); font-size: .92rem; }
+/* ---- titoli di sezione con la scintilla ---- */
+section { padding: 3rem 0; border-top: 1px solid var(--line); }
+.sec-title { margin: 0 0 1.6rem; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 500; letter-spacing: -.01em; color: var(--title); display: flex; align-items: baseline; gap: .55rem; }
+.sec-title::after { content: ""; width: .42em; height: .42em; border-radius: 50%; background: var(--spark); flex-shrink: 0; transform: translateY(-.05em); }
+.tag { font-family: var(--mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--hi); }
 
-/* numeri chiave con filetto avorio */
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem 1.2rem; margin-bottom: 1.4rem; }
-.kpi { border-top: 3px solid var(--brand-line); padding-top: .45rem; }
-.kpi .v { font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--title); line-height: 1.2; }
-.kpi .l { font-size: .8rem; color: var(--muted); }
+/* ---- lavori ---- */
+.works { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 1.6rem 1.4rem; }
+.work { display: flex; flex-direction: column; gap: .5rem; text-decoration: none; color: inherit; }
+.cover { aspect-ratio: 16 / 10; border-radius: 10px; border: 1px solid var(--line); overflow: hidden; background: var(--panel); position: relative; }
+.cover svg { width: 100%; height: 100%; display: block; }
+.work:hover .cover { border-color: var(--line-strong); }
+.work h3 { margin: .2rem 0 0; font-size: 1.2rem; font-weight: 500; color: var(--title); }
+.work p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 46ch; }
 
-/* tabella esperienza */
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
-table.data { width: 100%; border-collapse: collapse; font-size: .9rem; }
-table.data th { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--title); font-weight: 500; text-align: left; padding: .55rem .8rem; border-bottom: 1px solid var(--line-strong); }
-table.data td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-table.data tr:last-child td { border-bottom: 0; }
-table.data td.yrs { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; width: 1%; }
+/* ---- competenze ---- */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6rem 2.4rem; }
+.skills h3 { margin: 0 0 .6rem; }
+.skills ul { list-style: none; margin: 0; padding: 0; }
+.skills li { padding: .55rem 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+.skills li:last-child { border-bottom: 0; }
 
-.note { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--brand-line); border-radius: 8px; padding: 1rem 1.1rem; }
-.note p { margin: 0; }
+/* ---- esperienza ---- */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .8rem 1.4rem; margin-bottom: 1.6rem; }
+.kpi { border-top: 3px solid var(--brand-line); padding-top: .5rem; }
+.kpi .v { font-size: 1.9rem; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--title); line-height: 1.15; letter-spacing: -.01em; }
+.kpi .l { font-size: .82rem; color: var(--muted); }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+.timeline li:last-child { border-bottom: 0; }
+.timeline .yrs { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); font-size: .85rem; padding-top: .1rem; }
 
-.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-.contact p { margin: 0; }
+/* ---- metodo ---- */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; counter-reset: s; }
+.step { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+.step::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: .75rem; color: var(--hi); display: block; margin-bottom: .3rem; }
+.step h3 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 500; color: var(--title); }
+.step p { margin: 0; color: var(--muted); font-size: .92rem; }
 
-footer.status { margin-top: 1rem; padding: .6rem 0 1.2rem; font-family: var(--mono); font-size: .72rem; color: var(--muted); border-top: 1px solid var(--line); background: var(--panel); }
+/* ---- contatti ---- */
+.contact-big { font-size: clamp(1.5rem, 4.2vw, 2.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; margin: 0 0 .6rem; }
+.contact-big a { color: var(--title); text-decoration: none; border-bottom: 3px solid var(--brand-line); }
+.contact-big a:hover { border-bottom-color: var(--spark); }
+
+footer.status { padding: .8rem 0 1.4rem; font-family: var(--mono); font-size: .72rem; color: var(--muted); border-top: 1px solid var(--line); background: var(--panel); }
 footer.status .wrap { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; }
-
+footer.status a { color: inherit; }
 
 /* ---- logo gigante in filigrana, con leggero effetto parallasse ---- */
-.watermark { position: fixed; top: 8vh; right: -14vw; width: min(78vw, 820px); z-index: 0; pointer-events: none;
-  color: var(--title); opacity: .055; transform: rotate(-16deg); will-change: transform; }
+.watermark { position: fixed; top: 10vh; right: -16vw; width: min(78vw, 860px); z-index: 0; pointer-events: none;
+  color: var(--title); opacity: .045; transform: rotate(-16deg); will-change: transform; }
 .watermark svg { width: 100%; height: auto; display: block; }
-header.top, main, footer.status { position: relative; z-index: 1; }
-@media (prefers-color-scheme: dark) { .watermark { opacity: .07; } }
-@media (max-width: 560px) { .watermark { width: 120vw; right: -45vw; top: 14vh; } }
-@media print { .watermark { display: none; } }
+main, footer.status { position: relative; z-index: 1; }
+@media (prefers-color-scheme: dark) { .watermark { opacity: .06; } }
 
-@media (max-width: 560px) {
-  .top-sub { display: none; }
-  .hero { padding-top: 2.4rem; }
+@media (max-width: 720px) {
+  nav.menu { display: none; }
+  .hero { padding-top: 2.6rem; }
+  .timeline li { grid-template-columns: 1fr; gap: .1rem; }
+  .watermark { width: 120vw; right: -45vw; top: 16vh; }
 }
 @media print {
   :root { --bg: #ffffff; --panel: #f5f7f9; --panel-2: #ffffff; --text: #1f2a33; --muted: #536373; color-scheme: light; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .watermark, header.top { display: none; }
 }
 </style>
 </head>
@@ -118,83 +137,174 @@ header.top, main, footer.status { position: relative; z-index: 1; }
 
 <header class="top">
   <div class="wrap">
-    <div class="logo"><svg viewBox="-12 0 224 259" aria-hidden="true"><path d="M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="122" cy="124" r="37" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="48.9" cy="200.5" r="12" fill="var(--spark)"/></svg></div>
-    <div>
-      <div class="top-title">Giuseppe Nugara</div>
-      <div class="top-sub">supporto informatico · Torino e cintura</div>
-    </div>
+    <a class="logo" href="#" aria-label="Inizio pagina"><svg viewBox="-12 0 224 259" aria-hidden="true"><path d="M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="122" cy="124" r="37" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="48.9" cy="200.5" r="12" fill="var(--spark)"/></svg></a>
+    <a class="top-title" href="#">Giuseppe Nugara</a>
     <div class="top-spacer"></div>
-    <a class="btn" href="#contatti">Contatti</a>
+    <nav class="menu" aria-label="Sezioni">
+      <a href="#lavori">Lavori</a>
+      <a href="#competenze">Competenze</a>
+      <a href="#esperienza">Esperienza</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
+
   <div class="hero">
-    <span class="eyebrow">Per piccole imprese e professionisti</span>
-    <h1>Supporto informatico concreto, spiegato in modo semplice</h1>
-    <p>Siti web, sicurezza, backup e piccoli gestionali su misura. Oltre vent'anni di esperienza IT, al servizio di chi non ha un reparto informatico interno.</p>
-    <a class="btn primary" href="#contatti">Parliamone</a>
+    <div>
+      <h1>Giuseppe Nugara</h1>
+      <p class="lead">Tecnologia affidabile per chi lavora ogni giorno senza un reparto IT.</p>
+      <p class="sub">Siti web, sicurezza informatica, backup e piccoli gestionali su misura per imprese e professionisti della zona di Torino. Oltre vent'anni di esperienza, e ogni cosa spiegata in maniera semplice.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#contatti">Parliamone</a>
+        <a class="btn" href="#lavori">Guarda i lavori</a>
+      </div>
+    </div>
   </div>
 
-  <section id="servizi" aria-labelledby="l-servizi">
-    <h2 class="label" id="l-servizi">Cosa posso fare per te</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Siti web</h3>
-        <p>Realizzazione o rinnovo del sito aziendale: chiaro, veloce, leggibile da telefono e facile da trovare.</p>
-      </div>
-      <div class="card">
-        <h3>Sicurezza informatica</h3>
-        <p>Verifica di sito, email e accessi: aggiornamenti, password, protezione da attacchi e truffe via email.</p>
-      </div>
-      <div class="card">
-        <h3>Backup e organizzazione</h3>
-        <p>Copie di sicurezza affidabili, posta elettronica in ordine, accessi condivisi gestiti in modo corretto.</p>
-      </div>
-      <div class="card">
+  <section id="lavori" aria-labelledby="t-lavori">
+    <h2 class="sec-title" id="t-lavori">Lavori selezionati</h2>
+    <div class="works">
+
+      <article class="work">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+            <rect width="320" height="200" fill="var(--brand)"/>
+            <rect x="0" y="0" width="320" height="26" fill="var(--panel)" opacity=".12"/>
+            <rect x="24" y="44" width="70" height="132" rx="6" fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".7"/>
+            <rect x="106" y="44" width="190" height="132" rx="6" fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".7"/>
+            <rect x="120" y="60" width="110" height="8" rx="4" fill="var(--brand-line)" opacity=".8"/>
+            <rect x="120" y="80" width="160" height="6" rx="3" fill="#fff" opacity=".25"/>
+            <rect x="120" y="94" width="140" height="6" rx="3" fill="#fff" opacity=".25"/>
+            <rect x="34" y="58" width="50" height="6" rx="3" fill="#fff" opacity=".35"/>
+            <rect x="34" y="72" width="40" height="6" rx="3" fill="#fff" opacity=".2"/>
+            <circle cx="282" cy="160" r="5" fill="var(--spark)"/>
+          </svg>
+        </div>
+        <span class="tag">Progetto personale · app web</span>
+        <h3>NgLab Studio</h3>
+        <p>L'applicazione con cui gestisco e pubblico il mio sito: un solo file, funziona anche offline, con copia di sicurezza prima di ogni modifica.</p>
+      </article>
+
+      <article class="work">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+            <rect width="320" height="200" fill="var(--panel)"/>
+            <rect x="110" y="18" width="100" height="164" rx="8" fill="var(--panel-2)" stroke="var(--line-strong)"/>
+            <g stroke="var(--line-strong)" stroke-width="1" opacity=".8">
+              <line x1="122" y1="44" x2="198" y2="44"/><line x1="122" y1="60" x2="198" y2="60"/><line x1="122" y1="76" x2="198" y2="76"/>
+              <line x1="122" y1="92" x2="198" y2="92"/><line x1="122" y1="108" x2="198" y2="108"/><line x1="122" y1="124" x2="198" y2="124"/>
+              <line x1="122" y1="140" x2="198" y2="140"/><line x1="122" y1="156" x2="198" y2="156"/>
+            </g>
+            <rect x="122" y="28" width="40" height="7" rx="3" fill="var(--title)" opacity=".7"/>
+            <circle cx="198" cy="31" r="4" fill="var(--spark)"/>
+          </svg>
+        </div>
+        <span class="tag">Python · automazione</span>
+        <h3>Template per reMarkable</h3>
+        <p>Agende e moduli per tablet a inchiostro elettronico, generati in automatico con script Python che ho scritto da zero.</p>
+      </article>
+
+      <article class="work">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+            <rect width="320" height="200" fill="var(--panel)"/>
+            <path d="M160 34 L214 54 V102 C214 136 190 158 160 170 C130 158 106 136 106 102 V54 Z" fill="var(--brand)" />
+            <path d="M160 46 L204 62 V102 C204 129 185 147 160 157 C135 147 116 129 116 102 V62 Z" fill="none" stroke="var(--brand-line)" stroke-width="2"/>
+            <path d="M140 102 L155 117 L182 88" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="236" cy="150" r="5" fill="var(--spark)"/>
+          </svg>
+        </div>
+        <span class="tag">Sicurezza · sito aziendale</span>
+        <h3>Messa in sicurezza di un sito</h3>
+        <p>Verifica e protezione del sito di una ditta di montaggi industriali: aggiornamenti, accessi, intestazioni di sicurezza e controlli periodici.</p>
+      </article>
+
+      <article class="work">
+        <div class="cover" aria-hidden="true">
+          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+            <rect width="320" height="200" fill="var(--brand)"/>
+            <g fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".75">
+              <rect x="24" y="30" width="272" height="140" rx="6"/>
+              <line x1="24" y1="56" x2="296" y2="56"/>
+              <line x1="24" y1="84" x2="296" y2="84"/><line x1="24" y1="112" x2="296" y2="112"/><line x1="24" y1="140" x2="296" y2="140"/>
+              <line x1="120" y1="30" x2="120" y2="170"/><line x1="210" y1="30" x2="210" y2="170"/>
+            </g>
+            <rect x="34" y="40" width="50" height="7" rx="3" fill="#fff" opacity=".6"/>
+            <rect x="130" y="40" width="40" height="7" rx="3" fill="#fff" opacity=".6"/>
+            <rect x="220" y="40" width="44" height="7" rx="3" fill="#fff" opacity=".6"/>
+            <circle cx="280" cy="126" r="5" fill="var(--spark)"/>
+          </svg>
+        </div>
+        <span class="tag">Database · gestionale</span>
         <h3>Gestionali su misura</h3>
-        <p>Piccoli strumenti costruiti sul tuo modo di lavorare: anagrafiche clienti, ordini, scadenze, preventivi.</p>
+        <p>Anagrafiche, ordini e scadenze costruiti sul modo di lavorare di chi li usa, con l'esperienza di anni da amministratore di database Oracle.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="competenze" aria-labelledby="t-competenze">
+    <h2 class="sec-title" id="t-competenze">Competenze</h2>
+    <div class="skills">
+      <div>
+        <h3 class="tag">Sviluppo</h3>
+        <ul>
+          <li>Siti web veloci e leggibili da telefono</li>
+          <li>Applicazioni web e piccoli gestionali</li>
+          <li>Database e SQL, Oracle</li>
+          <li>Automazioni con Python</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="tag">Sicurezza e infrastruttura</h3>
+        <ul>
+          <li>Messa in sicurezza di siti ed email</li>
+          <li>Backup e ripristino</li>
+          <li>Gestione di accessi e password</li>
+          <li>Difesa da phishing e truffe online</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section id="esperienza" aria-labelledby="l-esperienza">
-    <h2 class="label" id="l-esperienza">Esperienza</h2>
+  <section id="esperienza" aria-labelledby="t-esperienza">
+    <h2 class="sec-title" id="t-esperienza">Esperienza</h2>
     <div class="kpis">
       <div class="kpi"><div class="v">20+ anni</div><div class="l">nel settore informatico</div></div>
       <div class="kpi"><div class="v">15 anni</div><div class="l">da responsabile IT e sicurezza</div></div>
       <div class="kpi"><div class="v">2026</div><div class="l">certificazione Google Cybersecurity</div></div>
     </div>
-    <div class="table-wrap">
-      <table class="data">
-        <thead><tr><th>Periodo</th><th>Ruolo</th></tr></thead>
-        <tbody>
-          <tr><td class="yrs">1999 – 2004</td><td>Database administrator e consulente Oracle presso Tecne S.r.l.</td></tr>
-          <tr><td class="yrs">2004 – 2019</td><td>Responsabile IT e sicurezza informatica presso Nugara Montaggi S.r.l.</td></tr>
-          <tr><td class="yrs">2026</td><td>Google Cybersecurity Professional Certificate</td></tr>
-        </tbody>
-      </table>
+    <ul class="timeline">
+      <li><span class="yrs">1999 – 2004</span><span>Database administrator e consulente Oracle presso Tecne S.r.l.</span></li>
+      <li><span class="yrs">2004 – 2019</span><span>Responsabile IT e sicurezza informatica presso Nugara Montaggi S.r.l.</span></li>
+      <li><span class="yrs">2026</span><span>Google Cybersecurity Professional Certificate</span></li>
+    </ul>
+  </section>
+
+  <section id="metodo" aria-labelledby="t-metodo">
+    <h2 class="sec-title" id="t-metodo">Come lavoro</h2>
+    <div class="steps">
+      <div class="step"><h3>Ascolto</h3><p>Un primo incontro, senza impegno, per capire come lavori e cosa ti serve davvero.</p></div>
+      <div class="step"><h3>Proposta chiara</h3><p>Cosa faccio, in quanto tempo e a quale costo, definito prima di iniziare.</p></div>
+      <div class="step"><h3>Lavoro spiegato</h3><p>Ti consegno tutto con istruzioni semplici, così resti autonomo e sai cosa hai in mano.</p></div>
     </div>
   </section>
 
-  <section id="metodo" aria-labelledby="l-metodo">
-    <h2 class="label" id="l-metodo">Come lavoro</h2>
-    <div class="note">
-      <p>Un primo incontro per capire cosa ti serve, una proposta chiara con i costi definiti prima di iniziare, e spiegazioni in italiano semplice, senza gergo tecnico.</p>
-    </div>
+  <section id="contatti" aria-labelledby="t-contatti">
+    <h2 class="sec-title" id="t-contatti">Contatti</h2>
+    <p class="contact-big"><a href="mailto:giuseppe@giuseppenugara.it">giuseppe@giuseppenugara.it</a></p>
+    <p class="muted">Ti rispondo entro un giorno lavorativo · Rivalta di Torino (TO), zona Torino e cintura</p>
   </section>
 
-  <section id="contatti" aria-labelledby="l-contatti">
-    <h2 class="label" id="l-contatti">Contatti</h2>
-    <div class="contact">
-      <p>Scrivimi a <a href="mailto:giuseppe@giuseppenugara.it">giuseppe@giuseppenugara.it</a>: ti rispondo entro un giorno lavorativo.</p>
-    </div>
-    <p class="muted" style="margin:.4rem 0 0">Rivalta di Torino (TO) · zona Torino e cintura</p>
-  </section>
 </main>
 
 <footer class="status">
-  <div class="wrap"><span>© 2026 Giuseppe Nugara</span><span>giuseppenugara.it</span></div>
+  <div class="wrap">
+    <span>© 2026 Giuseppe Nugara</span>
+    <span><a href="mailto:giuseppe@giuseppenugara.it">Email</a> · <a href="https://github.com/giuseppenugara">GitHub</a></span>
+  </div>
 </footer>
 
 <script>
@@ -206,7 +316,7 @@ header.top, main, footer.status { position: relative; z-index: 1; }
   let pending = false;
   const update = () => {
     const y = window.scrollY;
-    wm.style.transform = `translateY(${-y * 0.18}px) rotate(${-16 + y * 0.008}deg)`;
+    wm.style.transform = `translateY(${-y * 0.15}px) rotate(${-16 + y * 0.006}deg)`;
     pending = false;
   };
   addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(update); } }, { passive: true });
