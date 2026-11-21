@@ -75,6 +75,9 @@ section { padding: 3rem 0; border-top: 1px solid var(--line); }
 .cover .view { aspect-ratio: 16 / 10; overflow: hidden; background: var(--panel); }
 .cover .view svg, .cover .view img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: top left; }
 .work:hover .cover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 1px 2px rgba(0,49,83,.06), 0 16px 32px -14px rgba(0,49,83,.45); }
+/* copertina con foto reale: niente barra del browser, stessa altezza totale delle altre */
+.cover.photo .view { aspect-ratio: auto; height: 0; padding-bottom: calc(62.5% + 23px); position: relative; }
+.cover.photo .view img { position: absolute; inset: 0; object-position: center; }
 button.cover { padding: 0; width: 100%; cursor: zoom-in; font: inherit; color: inherit; text-align: left; }
 .more { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
 
@@ -211,20 +214,13 @@ main, footer.status { position: relative; z-index: 1; }
       </article>
 
       <article class="work">
-        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="320" height="200" fill="var(--panel)"/>
-            <rect x="110" y="18" width="100" height="164" rx="8" fill="var(--panel-2)" stroke="var(--line-strong)"/>
-            <g stroke="var(--line-strong)" stroke-width="1" opacity=".8">
-              <line x1="122" y1="44" x2="198" y2="44"/><line x1="122" y1="60" x2="198" y2="60"/><line x1="122" y1="76" x2="198" y2="76"/>
-              <line x1="122" y1="92" x2="198" y2="92"/><line x1="122" y1="108" x2="198" y2="108"/><line x1="122" y1="124" x2="198" y2="124"/>
-              <line x1="122" y1="140" x2="198" y2="140"/><line x1="122" y1="156" x2="198" y2="156"/>
-            </g>
-            <rect x="122" y="28" width="40" height="7" rx="3" fill="var(--title)" opacity=".7"/>
-            <circle cx="198" cy="31" r="4" fill="var(--spark)"/>
-          </svg></div></div>
+        <button class="cover photo" type="button" data-gallery="remarkable" aria-label="Guarda le foto dei template per reMarkable">
+          <div class="view"><img src="img/rem-cover.webp" alt="Pagina giornaliera dell'agenda 2027 su un tablet reMarkable, con scritta a mano e penna" width="1200" height="774" loading="lazy"></div>
+        </button>
         <span class="tag">Python · automazione</span>
         <h3>Template per reMarkable</h3>
-        <p>Agende e moduli per tablet a inchiostro elettronico, generati in automatico con script Python che ho scritto da zero.</p>
+        <p>Agende e quaderni per tablet a inchiostro elettronico, con pagine collegate tra loro: calendario annuale, mesi, giorni, note. Tutto generato in automatico da script Python che ho scritto da zero.</p>
+        <span class="more">8 foto dal dispositivo</span>
       </article>
 
       <article class="work">
@@ -331,6 +327,16 @@ main, footer.status { position: relative; z-index: 1; }
       ['img/crm-clienti.webp', 'Clienti: elenco con filtri e scheda di dettaglio con acquisti per categoria'],
       ['img/crm-ordine.webp', 'Ordine: inserimento con righe prodotto e totali calcolati'],
       ['img/crm-analisi.webp', 'Analisi clienti: chi cresce, chi cala, chi si è perso'],
+    ],
+    remarkable: [
+      ['img/rem-giorno.webp', 'Agenda 2027: pagina del giorno con orari, sul tablet'],
+      ['img/rem-anno.webp', 'Calendario annuale: ogni mese porta alla sua pagina'],
+      ['img/rem-mese.webp', 'Vista del mese con le linguette laterali per saltare tra i mesi'],
+      ['img/rem-note.webp', 'Pagina note a quadretti collegata al giorno'],
+      ['img/rem-attivita.webp', 'Elenco delle cose da fare con caselle da spuntare'],
+      ['img/rem-giallo-copertina.webp', 'Il taccuino del giallista: quaderno per progettare un romanzo giallo'],
+      ['img/rem-giallo-indice.webp', 'Indice con le sezioni del taccuino, tutte cliccabili'],
+      ['img/rem-giallo-sospettati.webp', 'Schede dei sospettati: movente, alibi, segreto'],
     ],
     nglab: [
       ['img/nglab-codice.webp', 'Editor di una scheda del laboratorio, con il codice dello script'],
