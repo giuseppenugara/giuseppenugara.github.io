@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giuseppe Nugara · Informatica concreta per piccole imprese</title>
 <meta name="description" content="Siti web, sicurezza informatica, backup e gestionali su misura per piccole imprese e professionisti della zona di Torino. Oltre vent'anni di esperienza IT.">
@@ -18,16 +19,6 @@
   --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
   --sans: system-ui, -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b1620; --panel: #11212e; --panel-2: #172a39; --line: #24394b; --line-strong: #44607a;
-    --text: #e4eaef; --muted: #9fb0c0; --accent: #f6efe0; --accent-text: #0b1620;
-    --ok: #6fbf73; --warn: #e0a040; --danger: #ef6b7a; --focus: #7aa7d8;
-    --brand: #00243d; --brand-text: #ffffff; --brand-line: #cbbd9c; --title: #9cc6e6;
-    --hi: #e8dcc2; --hi-bg: #2a2a24;
-    color-scheme: dark;
-  }
 }
 
 * { box-sizing: border-box; }
@@ -116,7 +107,6 @@ footer.status a { color: inherit; }
   color: var(--title); opacity: .045; transform: rotate(-16deg); will-change: transform; }
 .watermark svg { width: 100%; height: auto; display: block; }
 main, footer.status { position: relative; z-index: 1; }
-@media (prefers-color-scheme: dark) { .watermark { opacity: .06; } }
 
 @media (max-width: 720px) {
   nav.menu { display: none; }
