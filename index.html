@@ -63,9 +63,26 @@ section { padding: 3rem 0; border-top: 1px solid var(--line); }
 /* ---- lavori ---- */
 .works { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 1.6rem 1.4rem; }
 .work { display: flex; flex-direction: column; gap: .5rem; text-decoration: none; color: inherit; }
-.cover { aspect-ratio: 16 / 10; border-radius: 10px; border: 1px solid var(--line); overflow: hidden; background: var(--panel); position: relative; }
-.cover svg { width: 100%; height: 100%; display: block; }
-.work:hover .cover { border-color: var(--line-strong); }
+.cover { border-radius: 10px; border: 1px solid var(--line); overflow: hidden; background: var(--panel-2);
+  box-shadow: 0 1px 2px rgba(0,49,83,.06), 0 10px 28px -14px rgba(0,49,83,.35); transition: transform .25s, box-shadow .25s; }
+.cover .bar { height: 22px; display: flex; align-items: center; gap: 6px; padding: 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.cover .bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); opacity: .7; }
+.cover .bar i:first-child { background: var(--spark); opacity: 1; }
+.cover .view { aspect-ratio: 16 / 10; overflow: hidden; background: var(--panel); }
+.cover .view svg, .cover .view img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: top left; }
+.work:hover .cover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 1px 2px rgba(0,49,83,.06), 0 16px 32px -14px rgba(0,49,83,.45); }
+button.cover { padding: 0; width: 100%; cursor: zoom-in; font: inherit; color: inherit; text-align: left; }
+.more { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+
+/* galleria a schermo intero */
+dialog.gallery { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); width: 100%; }
+dialog.gallery::backdrop { background: rgba(0,20,35,.82); }
+.gallery figure { margin: 0; background: var(--panel-2); border-radius: 10px; overflow: hidden; }
+.gallery img { width: 100%; height: auto; max-height: calc(100vh - 7rem); object-fit: contain; display: block; background: var(--panel); }
+.gallery figcaption { display: flex; align-items: center; gap: .6rem; padding: .6rem .8rem; font-size: .9rem; border-top: 1px solid var(--line); }
+.gallery figcaption span { flex: 1; }
+.gallery .count { font-family: var(--mono); font-size: .75rem; color: var(--muted); flex: 0; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .cover { transition: none; } }
 .work h3 { margin: .2rem 0 0; font-size: 1.2rem; font-weight: 500; color: var(--title); }
 .work p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 46ch; }
 
@@ -158,8 +175,18 @@ main, footer.status { position: relative; z-index: 1; }
     <div class="works">
 
       <article class="work">
-        <div class="cover" aria-hidden="true">
-          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+        <button class="cover" type="button" data-gallery="crm" aria-label="Guarda le schermate del CRM">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="view"><img src="img/crm-dashboard.webp" alt="Cruscotto del CRM con vendite del mese, follow-up da fare e ultimi ordini" width="1600" height="1000" loading="lazy"></div>
+        </button>
+        <span class="tag">Google Sheets · app web · gestionale</span>
+        <h3>CRM per agenti commerciali</h3>
+        <p>Il gestionale che uso ogni giorno sul lavoro: clienti, visite, ordini, incassi e analisi delle vendite, costruito su Google Sheets con un'interfaccia web su misura.</p>
+        <span class="more">4 schermate · dati dimostrativi</span>
+      </article>
+
+      <article class="work">
+        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
             <rect width="320" height="200" fill="var(--brand)"/>
             <rect x="0" y="0" width="320" height="26" fill="var(--panel)" opacity=".12"/>
             <rect x="24" y="44" width="70" height="132" rx="6" fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".7"/>
@@ -170,16 +197,14 @@ main, footer.status { position: relative; z-index: 1; }
             <rect x="34" y="58" width="50" height="6" rx="3" fill="#fff" opacity=".35"/>
             <rect x="34" y="72" width="40" height="6" rx="3" fill="#fff" opacity=".2"/>
             <circle cx="282" cy="160" r="5" fill="var(--spark)"/>
-          </svg>
-        </div>
+          </svg></div></div>
         <span class="tag">Progetto personale · app web</span>
         <h3>NgLab Studio</h3>
         <p>L'applicazione con cui gestisco e pubblico il mio sito: un solo file, funziona anche offline, con copia di sicurezza prima di ogni modifica.</p>
       </article>
 
       <article class="work">
-        <div class="cover" aria-hidden="true">
-          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
             <rect width="320" height="200" fill="var(--panel)"/>
             <rect x="110" y="18" width="100" height="164" rx="8" fill="var(--panel-2)" stroke="var(--line-strong)"/>
             <g stroke="var(--line-strong)" stroke-width="1" opacity=".8">
@@ -189,48 +214,25 @@ main, footer.status { position: relative; z-index: 1; }
             </g>
             <rect x="122" y="28" width="40" height="7" rx="3" fill="var(--title)" opacity=".7"/>
             <circle cx="198" cy="31" r="4" fill="var(--spark)"/>
-          </svg>
-        </div>
+          </svg></div></div>
         <span class="tag">Python · automazione</span>
         <h3>Template per reMarkable</h3>
         <p>Agende e moduli per tablet a inchiostro elettronico, generati in automatico con script Python che ho scritto da zero.</p>
       </article>
 
       <article class="work">
-        <div class="cover" aria-hidden="true">
-          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
             <rect width="320" height="200" fill="var(--panel)"/>
             <path d="M160 34 L214 54 V102 C214 136 190 158 160 170 C130 158 106 136 106 102 V54 Z" fill="var(--brand)" />
             <path d="M160 46 L204 62 V102 C204 129 185 147 160 157 C135 147 116 129 116 102 V62 Z" fill="none" stroke="var(--brand-line)" stroke-width="2"/>
             <path d="M140 102 L155 117 L182 88" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="236" cy="150" r="5" fill="var(--spark)"/>
-          </svg>
-        </div>
+          </svg></div></div>
         <span class="tag">Sicurezza · sito aziendale</span>
         <h3>Messa in sicurezza di un sito</h3>
         <p>Verifica e protezione del sito di una ditta di montaggi industriali: aggiornamenti, accessi, intestazioni di sicurezza e controlli periodici.</p>
       </article>
 
-      <article class="work">
-        <div class="cover" aria-hidden="true">
-          <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="320" height="200" fill="var(--brand)"/>
-            <g fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".75">
-              <rect x="24" y="30" width="272" height="140" rx="6"/>
-              <line x1="24" y1="56" x2="296" y2="56"/>
-              <line x1="24" y1="84" x2="296" y2="84"/><line x1="24" y1="112" x2="296" y2="112"/><line x1="24" y1="140" x2="296" y2="140"/>
-              <line x1="120" y1="30" x2="120" y2="170"/><line x1="210" y1="30" x2="210" y2="170"/>
-            </g>
-            <rect x="34" y="40" width="50" height="7" rx="3" fill="#fff" opacity=".6"/>
-            <rect x="130" y="40" width="40" height="7" rx="3" fill="#fff" opacity=".6"/>
-            <rect x="220" y="40" width="44" height="7" rx="3" fill="#fff" opacity=".6"/>
-            <circle cx="280" cy="126" r="5" fill="var(--spark)"/>
-          </svg>
-        </div>
-        <span class="tag">Database · gestionale</span>
-        <h3>Gestionali su misura</h3>
-        <p>Anagrafiche, ordini e scadenze costruiti sul modo di lavorare di chi li usa, con l'esperienza di anni da amministratore di database Oracle.</p>
-      </article>
 
     </div>
   </section>
@@ -296,6 +298,55 @@ main, footer.status { position: relative; z-index: 1; }
     <span><a href="mailto:giuseppe@giuseppenugara.it">Email</a> · <a href="https://github.com/giuseppenugara">GitHub</a></span>
   </div>
 </footer>
+
+<dialog class="gallery" id="gallery" aria-label="Schermate">
+  <figure>
+    <img id="galImg" src="" alt="">
+    <figcaption>
+      <span id="galCap"></span>
+      <span class="count" id="galCount"></span>
+      <button class="btn" type="button" id="galPrev" aria-label="Schermata precedente">←</button>
+      <button class="btn" type="button" id="galNext" aria-label="Schermata successiva">→</button>
+      <button class="btn" type="button" id="galClose" aria-label="Chiudi">✕</button>
+    </figcaption>
+  </figure>
+</dialog>
+
+<script>
+'use strict';
+/* galleria: clic sulla copertina, frecce per scorrere, Esc o clic fuori per chiudere */
+(() => {
+  const GALLERIE = {
+    crm: [
+      ['img/crm-dashboard.webp', 'Cruscotto: vendite del mese, follow-up scaduti e ultimi ordini'],
+      ['img/crm-clienti.webp', 'Clienti: elenco con filtri e scheda di dettaglio con acquisti per categoria'],
+      ['img/crm-ordine.webp', 'Ordine: inserimento con righe prodotto e totali calcolati'],
+      ['img/crm-analisi.webp', 'Analisi clienti: chi cresce, chi cala, chi si è perso'],
+    ],
+  };
+  const dlg = document.getElementById('gallery');
+  const img = document.getElementById('galImg');
+  let lista = [], i = 0;
+  const mostra = () => {
+    const [src, cap] = lista[i];
+    img.src = src; img.alt = cap;
+    document.getElementById('galCap').textContent = cap;
+    document.getElementById('galCount').textContent = (i + 1) + ' / ' + lista.length;
+  };
+  const sposta = d => { i = (i + d + lista.length) % lista.length; mostra(); };
+  document.querySelectorAll('[data-gallery]').forEach(b => b.addEventListener('click', () => {
+    lista = GALLERIE[b.dataset.gallery]; i = 0; mostra(); dlg.showModal();
+  }));
+  document.getElementById('galPrev').addEventListener('click', () => sposta(-1));
+  document.getElementById('galNext').addEventListener('click', () => sposta(1));
+  document.getElementById('galClose').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') sposta(1);
+    if (e.key === 'ArrowLeft') sposta(-1);
+  });
+})();
+</script>
 
 <script>
 'use strict';
