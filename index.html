@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giuseppe Nugara · Supporto informatico per piccole imprese</title>
+<meta name="description" content="Siti web, sicurezza informatica, backup e gestionali su misura per piccole imprese e professionisti della zona di Torino. Oltre vent'anni di esperienza IT.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%2300243D'/%3E%3Cg transform='translate(60.05 40.00) scale(0.6795)'%3E%3Cpath d='M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3' fill='none' stroke='%23F8F5F0' stroke-width='23'/%3E%3Ccircle cx='122' cy='124' r='37' fill='none' stroke='%23F8F5F0' stroke-width='23'/%3E%3Ccircle cx='48.9' cy='200.5' r='12' fill='%23F0A050'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+/* ---- variante Blu di Prussia con accento avorio: colori ---- */
+:root {
+  --bg: #edf1f4; --panel: #f5f7f9; --panel-2: #fbfcfd; --line: #d3dce3; --line-strong: #9badbb;
+  --text: #1f2a33; --muted: #536373; --accent: #003153; --accent-text: #f6efe0;
+  --ok: #2e7d32; --warn: #a15c00; --danger: #b81432; --focus: #3a6ea5;
+  --brand: #003153; --brand-text: #ffffff; --brand-line: #d8c49c; --title: #003153;
+  --hi: #86663a; --hi-bg: #f3ecdd;
+  --spark: #F0A050;
+  --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1620; --panel: #11212e; --panel-2: #172a39; --line: #24394b; --line-strong: #44607a;
+    --text: #e4eaef; --muted: #9fb0c0; --accent: #f6efe0; --accent-text: #0b1620;
+    --ok: #6fbf73; --warn: #e0a040; --danger: #ef6b7a; --focus: #7aa7d8;
+    --brand: #00243d; --brand-text: #ffffff; --brand-line: #cbbd9c; --title: #9cc6e6;
+    --hi: #e8dcc2; --hi-bg: #2a2a24;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+a { color: var(--title); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 1.4rem; }
+.muted { color: var(--muted); }
+
+/* ---- pulsanti ---- */
+.btn { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid var(--line-strong); background: var(--panel-2);
+  padding: .45rem .8rem; border-radius: 6px; cursor: pointer; font-family: var(--mono); font-size: .8rem; white-space: nowrap; text-decoration: none; color: inherit; }
+.btn:hover { border-color: var(--text); }
+.btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); padding: .7rem 1.1rem; font-size: .85rem; }
+
+/* ---- banda in alto ---- */
+header.top { background: var(--brand); color: var(--brand-text); border-bottom: 4px solid var(--brand-line); }
+header.top .wrap { display: flex; align-items: center; gap: .8rem; padding-top: .7rem; padding-bottom: .7rem; }
+.logo { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; color: currentColor; }
+.logo svg { width: 26px; height: 30px; display: block; }
+.top-title { font-weight: 500; }
+.top-sub { font-family: var(--mono); font-size: .75rem; opacity: .85; }
+.top-spacer { flex: 1; }
+header.top .btn { background: transparent; color: var(--brand-text); border-color: rgba(255,255,255,.45); }
+header.top .btn:hover { border-color: var(--brand-text); }
+
+/* ---- apertura ---- */
+.hero { padding: 3.4rem 0 2.6rem; }
+.eyebrow { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--hi); background: var(--hi-bg); border: 1px solid var(--hi); border-radius: 4px; padding: .1rem .45rem; display: inline-block; }
+.hero h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.2; font-weight: 500; color: var(--title); margin: .9rem 0 0; max-width: 24ch; }
+.hero p { font-size: 1.05rem; color: var(--muted); max-width: 58ch; margin: 1rem 0 1.6rem; }
+
+/* ---- sezioni ---- */
+section { padding: 2rem 0; border-top: 1px solid var(--line); }
+.label { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--title); font-weight: 600; margin: 0 0 1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: .8rem; }
+.card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+.card h3 { margin: 0 0 .35rem; font-size: 1rem; font-weight: 500; color: var(--title); }
+.card p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+/* numeri chiave con filetto avorio */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem 1.2rem; margin-bottom: 1.4rem; }
+.kpi { border-top: 3px solid var(--brand-line); padding-top: .45rem; }
+.kpi .v { font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--title); line-height: 1.2; }
+.kpi .l { font-size: .8rem; color: var(--muted); }
+
+/* tabella esperienza */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+table.data { width: 100%; border-collapse: collapse; font-size: .9rem; }
+table.data th { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--title); font-weight: 500; text-align: left; padding: .55rem .8rem; border-bottom: 1px solid var(--line-strong); }
+table.data td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data tr:last-child td { border-bottom: 0; }
+table.data td.yrs { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; width: 1%; }
+
+.note { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--brand-line); border-radius: 8px; padding: 1rem 1.1rem; }
+.note p { margin: 0; }
+
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.contact p { margin: 0; }
+
+footer.status { margin-top: 1rem; padding: .6rem 0 1.2rem; font-family: var(--mono); font-size: .72rem; color: var(--muted); border-top: 1px solid var(--line); background: var(--panel); }
+footer.status .wrap { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; }
+
+
+/* ---- logo gigante in filigrana, con leggero effetto parallasse ---- */
+.watermark { position: fixed; top: 8vh; right: -14vw; width: min(78vw, 820px); z-index: 0; pointer-events: none;
+  color: var(--title); opacity: .055; transform: rotate(-16deg); will-change: transform; }
+.watermark svg { width: 100%; height: auto; display: block; }
+header.top, main, footer.status { position: relative; z-index: 1; }
+@media (prefers-color-scheme: dark) { .watermark { opacity: .07; } }
+@media (max-width: 560px) { .watermark { width: 120vw; right: -45vw; top: 14vh; } }
+@media print { .watermark { display: none; } }
+
+@media (max-width: 560px) {
+  .top-sub { display: none; }
+  .hero { padding-top: 2.4rem; }
+}
+@media print {
+  :root { --bg: #ffffff; --panel: #f5f7f9; --panel-2: #ffffff; --text: #1f2a33; --muted: #536373; color-scheme: light; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<div class="watermark" id="watermark" aria-hidden="true"><svg viewBox="-12 0 224 259"><path d="M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="122" cy="124" r="37" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="48.9" cy="200.5" r="12" fill="var(--spark)"/></svg></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><svg viewBox="-12 0 224 259" aria-hidden="true"><path d="M41 171 V88 A59 59 0 0 1 159 88 V171 A59 59 0 0 1 66.2 219.3" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="122" cy="124" r="37" fill="none" stroke="currentColor" stroke-width="22"/><circle cx="48.9" cy="200.5" r="12" fill="var(--spark)"/></svg></div>
+    <div>
+      <div class="top-title">Giuseppe Nugara</div>
+      <div class="top-sub">supporto informatico · Torino e cintura</div>
+    </div>
+    <div class="top-spacer"></div>
+    <a class="btn" href="#contatti">Contatti</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Per piccole imprese e professionisti</span>
+    <h1>Supporto informatico concreto, spiegato in modo semplice</h1>
+    <p>Siti web, sicurezza, backup e piccoli gestionali su misura. Oltre vent'anni di esperienza IT, al servizio di chi non ha un reparto informatico interno.</p>
+    <a class="btn primary" href="#contatti">Parliamone</a>
+  </div>
+
+  <section id="servizi" aria-labelledby="l-servizi">
+    <h2 class="label" id="l-servizi">Cosa posso fare per te</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Siti web</h3>
+        <p>Realizzazione o rinnovo del sito aziendale: chiaro, veloce, leggibile da telefono e facile da trovare.</p>
+      </div>
+      <div class="card">
+        <h3>Sicurezza informatica</h3>
+        <p>Verifica di sito, email e accessi: aggiornamenti, password, protezione da attacchi e truffe via email.</p>
+      </div>
+      <div class="card">
+        <h3>Backup e organizzazione</h3>
+        <p>Copie di sicurezza affidabili, posta elettronica in ordine, accessi condivisi gestiti in modo corretto.</p>
+      </div>
+      <div class="card">
+        <h3>Gestionali su misura</h3>
+        <p>Piccoli strumenti costruiti sul tuo modo di lavorare: anagrafiche clienti, ordini, scadenze, preventivi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="esperienza" aria-labelledby="l-esperienza">
+    <h2 class="label" id="l-esperienza">Esperienza</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v">20+ anni</div><div class="l">nel settore informatico</div></div>
+      <div class="kpi"><div class="v">15 anni</div><div class="l">da responsabile IT e sicurezza</div></div>
+      <div class="kpi"><div class="v">2026</div><div class="l">certificazione Google Cybersecurity</div></div>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Periodo</th><th>Ruolo</th></tr></thead>
+        <tbody>
+          <tr><td class="yrs">1999 – 2004</td><td>Database administrator e consulente Oracle presso Tecne S.r.l.</td></tr>
+          <tr><td class="yrs">2004 – 2019</td><td>Responsabile IT e sicurezza informatica presso Nugara Montaggi S.r.l.</td></tr>
+          <tr><td class="yrs">2026</td><td>Google Cybersecurity Professional Certificate</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="metodo" aria-labelledby="l-metodo">
+    <h2 class="label" id="l-metodo">Come lavoro</h2>
+    <div class="note">
+      <p>Un primo incontro per capire cosa ti serve, una proposta chiara con i costi definiti prima di iniziare, e spiegazioni in italiano semplice, senza gergo tecnico.</p>
+    </div>
+  </section>
+
+  <section id="contatti" aria-labelledby="l-contatti">
+    <h2 class="label" id="l-contatti">Contatti</h2>
+    <div class="contact">
+      <p>Scrivimi a <a href="mailto:giuseppe@giuseppenugara.it">giuseppe@giuseppenugara.it</a>: ti rispondo entro un giorno lavorativo.</p>
+    </div>
+    <p class="muted" style="margin:.4rem 0 0">Rivalta di Torino (TO) · zona Torino e cintura</p>
+  </section>
+</main>
+
+<footer class="status">
+  <div class="wrap"><span>© 2026 Giuseppe Nugara</span><span>giuseppenugara.it</span></div>
+</footer>
+
+<script>
+'use strict';
+/* filigrana: sale più lentamente della pagina e ruota appena; ferma se l'utente preferisce meno movimento */
+(() => {
+  const wm = document.getElementById('watermark');
+  if (!wm || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let pending = false;
+  const update = () => {
+    const y = window.scrollY;
+    wm.style.transform = `translateY(${-y * 0.18}px) rotate(${-16 + y * 0.008}deg)`;
+    pending = false;
+  };
+  addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>
