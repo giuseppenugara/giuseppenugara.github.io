@@ -37,7 +37,11 @@ a { color: var(--title); }
 .btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); padding: .7rem 1.1rem; font-size: .85rem; }
 
 /* ---- banda in alto ---- */
-header.top { background: var(--brand); color: var(--brand-text); border-bottom: 4px solid var(--brand-line); position: sticky; top: 0; z-index: 5; }
+header.top { background: var(--brand); color: var(--brand-text); border-bottom: 4px solid var(--brand-line); position: sticky; top: 0; z-index: 5; transition: background-color .3s; }
+/* appena la pagina scorre, la banda diventa un po' trasparente e sfoca ciò che passa sotto */
+header.top.scrolled { background: rgba(0, 49, 83, .84); border-bottom-color: rgba(216, 196, 156, .9);
+  -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { header.top.scrolled { background: var(--brand); } }
 header.top .wrap { display: flex; align-items: center; gap: .8rem; padding-top: .6rem; padding-bottom: .6rem; }
 .logo { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; color: currentColor; text-decoration: none; }
 .logo svg { width: 26px; height: 30px; display: block; }
@@ -75,13 +79,24 @@ button.cover { padding: 0; width: 100%; cursor: zoom-in; font: inherit; color: i
 .more { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
 
 /* galleria a schermo intero */
-dialog.gallery { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); width: 100%; }
+dialog.gallery { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); width: 100%; overflow: visible; }
 dialog.gallery::backdrop { background: rgba(0,20,35,.82); }
-.gallery figure { margin: 0; background: var(--panel-2); border-radius: 10px; overflow: hidden; }
-.gallery img { width: 100%; height: auto; max-height: calc(100vh - 7rem); object-fit: contain; display: block; background: var(--panel); }
-.gallery figcaption { display: flex; align-items: center; gap: .6rem; padding: .6rem .8rem; font-size: .9rem; border-top: 1px solid var(--line); }
+.gallery figure { margin: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+.gallery .stage { position: relative; background: var(--panel); }
+.gallery img { width: 100%; height: auto; max-height: calc(100vh - 7rem); object-fit: contain; display: block; }
+.gallery .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid var(--brand-line); background: rgba(0, 49, 83, .88); color: #f6efe0; font-size: 1.5rem; line-height: 1;
+  display: grid; place-items: center; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.3); transition: background .15s, transform .15s; }
+.gallery .nav:hover { background: var(--brand); transform: translateY(-50%) scale(1.06); }
+.gallery .nav.prev { left: 14px; } .gallery .nav.next { right: 14px; }
+.gallery .close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--brand-line);
+  background: rgba(0, 49, 83, .88); color: #f6efe0; font-size: 1rem; cursor: pointer; display: grid; place-items: center; }
+.gallery .close:hover { background: var(--brand); }
+.gallery figcaption { display: flex; align-items: center; gap: 1rem; padding: .7rem 1rem; font-size: .92rem;
+  background: #f6efe0; color: var(--brand); border-top: 3px solid var(--brand-line); }
 .gallery figcaption span { flex: 1; }
-.gallery .count { font-family: var(--mono); font-size: .75rem; color: var(--muted); flex: 0; white-space: nowrap; }
+.gallery .count { font-family: var(--mono); font-size: .78rem; flex: 0; white-space: nowrap; color: #86663a; }
+@media (max-width: 560px) { .gallery .nav { width: 40px; height: 40px; font-size: 1.15rem; } .gallery .nav.prev { left: 8px; } .gallery .nav.next { right: 8px; } }
 @media (prefers-reduced-motion: reduce) { .cover { transition: none; } }
 .work h3 { margin: .2rem 0 0; font-size: 1.2rem; font-weight: 500; color: var(--title); }
 .work p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 46ch; }
@@ -165,7 +180,6 @@ main, footer.status { position: relative; z-index: 1; }
       <p class="sub">Siti web, sicurezza informatica, backup e piccoli gestionali su misura per imprese e professionisti della zona di Torino. Oltre vent'anni di esperienza, e ogni cosa spiegata in maniera semplice.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#contatti">Parliamone</a>
-        <a class="btn" href="#lavori">Guarda i lavori</a>
       </div>
     </div>
   </div>
@@ -301,13 +315,15 @@ main, footer.status { position: relative; z-index: 1; }
 
 <dialog class="gallery" id="gallery" aria-label="Schermate">
   <figure>
-    <img id="galImg" src="" alt="">
+    <div class="stage">
+      <img id="galImg" src="" alt="">
+      <button class="nav prev" type="button" id="galPrev" aria-label="Schermata precedente">‹</button>
+      <button class="nav next" type="button" id="galNext" aria-label="Schermata successiva">›</button>
+      <button class="close" type="button" id="galClose" aria-label="Chiudi">✕</button>
+    </div>
     <figcaption>
       <span id="galCap"></span>
       <span class="count" id="galCount"></span>
-      <button class="btn" type="button" id="galPrev" aria-label="Schermata precedente">←</button>
-      <button class="btn" type="button" id="galNext" aria-label="Schermata successiva">→</button>
-      <button class="btn" type="button" id="galClose" aria-label="Chiudi">✕</button>
     </figcaption>
   </figure>
 </dialog>
@@ -351,6 +367,13 @@ main, footer.status { position: relative; z-index: 1; }
 <script>
 'use strict';
 /* filigrana: sale più lentamente della pagina e ruota appena; ferma se l'utente preferisce meno movimento */
+/* banda in alto: trasparente solo quando la pagina è scorsa */
+(() => {
+  const top = document.querySelector('header.top');
+  const segna = () => top.classList.toggle('scrolled', window.scrollY > 8);
+  addEventListener('scroll', segna, { passive: true });
+  segna();
+})();
 (() => {
   const wm = document.getElementById('watermark');
   if (!wm || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
