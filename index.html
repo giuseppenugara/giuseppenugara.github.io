@@ -80,6 +80,8 @@ section { padding: 3rem 0; border-top: 1px solid var(--line); }
 .cover.photo .view img { position: absolute; inset: 0; object-position: center; }
 button.cover { padding: 0; width: 100%; cursor: zoom-in; font: inherit; color: inherit; text-align: left; }
 .more { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+.more a { color: var(--title); }
+.grade { display: inline-block; font-family: var(--mono); font-size: .7rem; color: var(--ok); border: 1px solid var(--ok); border-radius: 4px; padding: 0 .35rem; margin-right: .35rem; background: #eaf4ea; }
 
 /* galleria a schermo intero */
 dialog.gallery { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); width: 100%; overflow: visible; }
@@ -224,16 +226,14 @@ main, footer.status { position: relative; z-index: 1; }
       </article>
 
       <article class="work">
-        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="320" height="200" fill="var(--panel)"/>
-            <path d="M160 34 L214 54 V102 C214 136 190 158 160 170 C130 158 106 136 106 102 V54 Z" fill="var(--brand)" />
-            <path d="M160 46 L204 62 V102 C204 129 185 147 160 157 C135 147 116 129 116 102 V62 Z" fill="none" stroke="var(--brand-line)" stroke-width="2"/>
-            <path d="M140 102 L155 117 L182 88" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="236" cy="150" r="5" fill="var(--spark)"/>
-          </svg></div></div>
-        <span class="tag">Sicurezza · sito aziendale</span>
-        <h3>Messa in sicurezza di un sito</h3>
-        <p>Verifica e protezione del sito di una ditta di montaggi industriali: aggiornamenti, accessi, intestazioni di sicurezza e controlli periodici.</p>
+        <button class="cover" type="button" data-gallery="nugara" aria-label="Guarda le schermate del sito di Nugara Montaggi">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="view"><img src="img/nm-home.webp" alt="Pagina iniziale del sito di Nugara Montaggi, carpenteria metallica" width="1600" height="1000" loading="lazy"></div>
+        </button>
+        <span class="tag">Sito web · sicurezza</span>
+        <h3>Sito per Nugara Montaggi</h3>
+        <p>Sito aziendale per un'impresa di carpenteria metallica: progettazione, realizzazione e messa in sicurezza, con aggiornamenti, accessi protetti e controlli periodici.</p>
+        <span class="more"><span class="grade">Security Headers A+</span> 5 schermate · <a href="https://www.nugaramontaggi.it" target="_blank" rel="noopener">nugaramontaggi.it ↗</a></span>
       </article>
 
 
@@ -337,6 +337,13 @@ main, footer.status { position: relative; z-index: 1; }
       ['img/rem-giallo-copertina.webp', 'Il taccuino del giallista: quaderno per progettare un romanzo giallo'],
       ['img/rem-giallo-indice.webp', 'Indice con le sezioni del taccuino, tutte cliccabili'],
       ['img/rem-giallo-sospettati.webp', 'Schede dei sospettati: movente, alibi, segreto'],
+    ],
+    nugara: [
+      ['img/nm-home.webp', 'Pagina iniziale: il marchio, il messaggio e le foto dei cantieri'],
+      ['img/nm-securityheaders.webp', 'Verifica su securityheaders.com: voto A+, tutte e sei le intestazioni di sicurezza presenti'],
+      ['img/nm-azienda.webp', "L'azienda: storia e competenze in poche righe"],
+      ['img/nm-lavori.webp', 'Dal cantiere: galleria fotografica dei lavori'],
+      ['img/nm-mezzi.webp', 'Parco mezzi: le attrezzature di proprietà, ordinate per categoria'],
     ],
     nglab: [
       ['img/nglab-codice.webp', 'Editor di una scheda del laboratorio, con il codice dello script'],
