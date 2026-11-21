@@ -200,21 +200,14 @@ main, footer.status { position: relative; z-index: 1; }
       </article>
 
       <article class="work">
-        <div class="cover" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="view"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="320" height="200" fill="var(--brand)"/>
-            <rect x="0" y="0" width="320" height="26" fill="var(--panel)" opacity=".12"/>
-            <rect x="24" y="44" width="70" height="132" rx="6" fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".7"/>
-            <rect x="106" y="44" width="190" height="132" rx="6" fill="none" stroke="var(--brand-line)" stroke-width="1.5" opacity=".7"/>
-            <rect x="120" y="60" width="110" height="8" rx="4" fill="var(--brand-line)" opacity=".8"/>
-            <rect x="120" y="80" width="160" height="6" rx="3" fill="#fff" opacity=".25"/>
-            <rect x="120" y="94" width="140" height="6" rx="3" fill="#fff" opacity=".25"/>
-            <rect x="34" y="58" width="50" height="6" rx="3" fill="#fff" opacity=".35"/>
-            <rect x="34" y="72" width="40" height="6" rx="3" fill="#fff" opacity=".2"/>
-            <circle cx="282" cy="160" r="5" fill="var(--spark)"/>
-          </svg></div></div>
+        <button class="cover" type="button" data-gallery="nglab" aria-label="Guarda le schermate di NgLab Studio">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="view"><img src="img/nglab-codice.webp" alt="NgLab Studio: editor di una scheda con codice Python" width="1600" height="1000" loading="lazy"></div>
+        </button>
         <span class="tag">Progetto personale · app web</span>
         <h3>NgLab Studio</h3>
-        <p>L'applicazione con cui gestisco e pubblico il mio sito: un solo file, funziona anche offline, con copia di sicurezza prima di ogni modifica.</p>
+        <p>L'applicazione con cui gestisco e pubblico il sito nglab.it: sezioni e schede modificabili, pubblicazione dei soli file cambiati, copia di sicurezza prima di ogni modifica. Un solo file HTML, senza librerie esterne.</p>
+        <span class="more">4 schermate</span>
       </article>
 
       <article class="work">
@@ -338,6 +331,12 @@ main, footer.status { position: relative; z-index: 1; }
       ['img/crm-clienti.webp', 'Clienti: elenco con filtri e scheda di dettaglio con acquisti per categoria'],
       ['img/crm-ordine.webp', 'Ordine: inserimento con righe prodotto e totali calcolati'],
       ['img/crm-analisi.webp', 'Analisi clienti: chi cresce, chi cala, chi si è perso'],
+    ],
+    nglab: [
+      ['img/nglab-codice.webp', 'Editor di una scheda del laboratorio, con il codice dello script'],
+      ['img/nglab-elemento.webp', 'Sezioni, elenco ordinabile e modulo per un nuovo elemento'],
+      ['img/nglab-impostazioni.webp', 'Impostazioni: addobbi stagionali automatici e caratteri ospitati sul sito per la privacy'],
+      ['img/nglab-pubblica.webp', 'Pubblicazione: confronta i file e invia solo quelli cambiati'],
     ],
   };
   const dlg = document.getElementById('gallery');
